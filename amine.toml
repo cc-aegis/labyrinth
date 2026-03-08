@@ -1,0 +1,11 @@
+[runtime]
+src-path = "src"
+updates-per-cycle = 65536
+
+[devices]
+0 = "display"
+
+[plugins]
+print-dbg = {}
+limit-clock-speed = { ips = 20_000_000 }
+ram-view = {}
