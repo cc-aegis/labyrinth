@@ -1,0 +1,67 @@
+include random;
+
+const DOOR_NORTH: u16 = 1;
+const DOOR_WEST: u16 = 2;
+const DOOR_EAST: u16 = 4;
+const DOOR_SOUTH: u16 = 8;
+
+const WIDTH: u16 = 64;
+const HEIGHT: u16 = 64;
+const CELL_COUNT: u16 = 4096;
+
+/*
+fn Labyrinth::generate(labyrinth: &u16) {
+    let indices = mem::alloc<u16>(CELL_COUNT);
+    let idx = CELL_COUNT in for idx downto 0 {
+        indices[idx] = idx;
+    }
+
+    let idx = CELL_COUNT for idx downto 0 {
+        let
+        let random_idx = random::next<u16>() % (idx + 1);
+        mem::swap(indices + random_idx, indices + idx);
+
+    }
+}*/
+
+fn Labyrinth::render(labyrinth: &u16) {
+    let y = HEIGHT in for y downto 0 {
+        let x = WIDTH in for x downto 0 {
+            render_tile(
+                (WIDTH - x) << 2,
+                (HEIGHT - y) << 2,
+                TILES[^labyrinth],
+            );
+        }
+    }
+}
+
+fn render_tile(x: u16, y: u16, tile4x4: &u16) {
+    for
+}
+
+fn Labyrinth::generate(labyrinth: &u16) {
+
+}
+
+const BLACK: u16 = 0;
+const WHITE: u16 = 255;
+
+const TILES: &&u16 = &[
+    &[BLACK, BLACK, BLACK, BLACK,    BLACK, BLACK, BLACK, BLACK,    BLACK, BLACK, BLACK, BLACK,    BLACK, BLACK, BLACK, BLACK], // SOLID
+    &[BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK,    BLACK, BLACK, BLACK, BLACK], // N
+    &[BLACK, BLACK, BLACK, BLACK,    WHITE, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, BLACK,    BLACK, BLACK, BLACK, BLACK], //  W
+    &[BLACK, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, BLACK,    BLACK, BLACK, BLACK, BLACK], // NW
+    &[BLACK, BLACK, BLACK, BLACK,    BLACK, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, WHITE,    BLACK, BLACK, BLACK, BLACK], //   E
+    &[BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, WHITE,    BLACK, BLACK, BLACK, BLACK], // N E
+    &[BLACK, BLACK, BLACK, BLACK,    WHITE, WHITE, WHITE, WHITE,    WHITE, WHITE, WHITE, WHITE,    BLACK, BLACK, BLACK, BLACK], //  WE
+    &[BLACK, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, WHITE,    WHITE, WHITE, WHITE, WHITE,    BLACK, BLACK, BLACK, BLACK], // NWE
+    &[BLACK, BLACK, BLACK, BLACK,    BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK], //    S
+    &[BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK], // N  S
+    &[BLACK, BLACK, BLACK, BLACK,    WHITE, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK], //  W S
+    &[BLACK, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, BLACK], // NW S
+    &[BLACK, BLACK, BLACK, BLACK,    BLACK, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, BLACK], //   ES
+    &[BLACK, WHITE, WHITE, BLACK,    BLACK, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, BLACK], // N ES
+    &[BLACK, BLACK, BLACK, BLACK,    WHITE, WHITE, WHITE, WHITE,    WHITE, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, BLACK], //  WES
+    &[BLACK, WHITE, WHITE, BLACK,    WHITE, WHITE, WHITE, WHITE,    WHITE, WHITE, WHITE, WHITE,    BLACK, WHITE, WHITE, BLACK], // NWES
+];

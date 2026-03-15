@@ -1,0 +1,34 @@
+include random;
+include set;
+
+struct Set<T> {
+    elements: &T,
+    len: u16,
+    cap: u16,
+}
+
+fn Set::add<T>(set: &Set<T>, element: T) {
+    if set.len == set.cap {
+        set.cap = set.cap << 1 + set.cap + 1;
+        let arr = mem::alloc<T>(set.cap);
+        mem::copy(arr, set.elements, set.len);
+        mem::free(set.elements);
+        set.elements = arr;
+    }
+    set.elements[set.len] = element;
+    set.len = set.len + 1;
+}
+
+fn Set::remove<T>(set: &Set<T>, idx: u16) -> T {
+    let result = set.elements[idx];
+    set.elements[idx] = set.elements[set.len = set.len - 1];
+    result
+}
+
+fn Set::free<T>(set: &Set<T>, free: fn(T)) {
+    let idx = set.len in for idx downto 0 {
+        free(set.elements[idx]);
+    }
+    mem::free(set.elements);
+    mem::free(set);
+}
